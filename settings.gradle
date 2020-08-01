@@ -1,0 +1,3 @@
+include ':openglSdk'
+include ':app'
+rootProject.name = "OpenGL"
