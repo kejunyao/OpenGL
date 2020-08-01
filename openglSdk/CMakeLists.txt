@@ -4,14 +4,19 @@
     include_directories(src/main/cpp)
 
     add_library(
-            OpenGL
+            NativeOpenGL
             SHARED
-            src/main/cpp/OpenGL.cpp
+            src/main/cpp/egl/EglHelper.cpp
+            src/main/cpp/NativeOpenGL.cpp
     )
 
     target_link_libraries(
-            OpenGL
-            OpenSLES
+            NativeOpenGL
+
+            EGL
+            GLESv2
+            android
+
             log
     )
 
