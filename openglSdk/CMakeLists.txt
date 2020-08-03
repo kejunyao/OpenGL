@@ -8,6 +8,7 @@
             SHARED
             src/main/cpp/egl/EglHelper.cpp
             src/main/cpp/NativeOpenGL.cpp
+            src/main/cpp/egl/EglThread.cpp
     )
 
     target_link_libraries(

@@ -25,7 +25,9 @@ public class NativeSurfaceView extends SurfaceView {
 
         @Override
         public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+            if (mNativeOpenGL != null) {
+                mNativeOpenGL.surfaceChange(width, height);
+            }
         }
 
         @Override

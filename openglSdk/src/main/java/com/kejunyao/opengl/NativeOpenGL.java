@@ -18,5 +18,10 @@ public class NativeOpenGL {
         _surfaceCreated(surface);
     }
 
+    public void surfaceChange(int width, int height) {
+        _surfaceChange(width, height);
+    }
+
     private native void _surfaceCreated(Surface surface);
+    private native void _surfaceChange(int width, int height);
 }
