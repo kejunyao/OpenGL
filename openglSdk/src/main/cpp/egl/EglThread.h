@@ -17,6 +17,10 @@
 
 class EglThread {
     public:
+        typedef void(*OnSurfaceCreateCallback)(void *);
+        typedef void(*OnSurfaceChangeCallback)(int width, int height, void *);
+        typedef void(*OnSurfaceDrawCallback)(void *);
+
         const bool DEBUG = true;
         pthread_t eglThread = -1;
         ANativeWindow *nativeWindow = NULL;
@@ -29,6 +33,10 @@ class EglThread {
         int surfaceWidth  = 0;
         int surfaceHeight = 0;
 
+        bool isAutoReader = true;
+        pthread_cond_t threadCond;
+        pthread_mutex_t  threadMutex;
+
     public:
         EglThread();
         ~EglThread();
@@ -36,6 +44,22 @@ class EglThread {
         void onSurfaceCreate(EGLNativeWindowType windowType);
 
         void onSurfaceChange(int width, int height);
+
+        void setAutoRender(bool isAuto);
+
+        void notifyRender();
+
+        OnSurfaceCreateCallback onSurfaceCreateCallback;
+        void *onSurfaceCreateCallbackCtx;
+        void setOnSurfaceCreateCallback(OnSurfaceCreateCallback callback, void *ctx);
+
+        OnSurfaceChangeCallback onSurfaceChangeCallback;
+        void *onSurfaceChangeCallbackCtx;
+        void setOnSurfaceChangeCallback(OnSurfaceChangeCallback callback, void *ctx);
+
+        OnSurfaceDrawCallback onSurfaceDrawCallback;
+        void *onSurfaceDrawCallbackCtx;
+        void setOnSurfaceDrawCallback(OnSurfaceDrawCallback callback, void *ctx);
 };
 
 

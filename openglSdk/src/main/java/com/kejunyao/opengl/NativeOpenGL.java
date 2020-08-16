@@ -24,4 +24,10 @@ public class NativeOpenGL {
 
     private native void _surfaceCreated(Surface surface);
     private native void _surfaceChange(int width, int height);
+
+    public void setAutoRender(boolean b) {
+        _setAutoRender(b);
+    }
+
+    private native void _setAutoRender(boolean b);
 }
